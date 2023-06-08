@@ -1,0 +1,33 @@
+name: Create packages WSA with Magisk and GAPPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_WSA:
+    name: Create packages WSA with Magisk and GAPPS
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        ref: main
+        repository: LSPosed/MagiskOnWSALocal
+    
+    - name: Set up environment
+      run: |
+        sudo apt-get update
+        sudo apt install -y lzip wine winetricks patchelf e2fsprogs aria2 python3 python3-pip aria2 p7zip-full attr unzip
+		
+    - name: Run.sh 
+      run: |
+        cd scripts
+        ./build.sh --arch x64 --release-type WIF --magisk-ver stable --gapps-brand MindTheGapps --root-sol magisk --compress-format 7z 
+        
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: output/*.7z
