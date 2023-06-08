@@ -16,17 +16,17 @@ jobs:
       with:
         ref: main
         repository: LSPosed/MagiskOnWSALocal
-    
+
     - name: Set up environment
       run: |
         sudo apt-get update
         sudo apt install -y lzip wine winetricks patchelf e2fsprogs aria2 python3 python3-pip aria2 p7zip-full attr unzip whiptail qemu-utils python3-venv python3-pip p7zip-full  
-	
+
     - name: Run.sh 
       run: |
         cd scripts
         ./build.sh --arch x64 --release-type WIF --magisk-ver stable --gapps-brand MindTheGapps --root-sol magisk --compress-format 7z 
-        
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
