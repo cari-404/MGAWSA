@@ -28,6 +28,6 @@ jobs:
         ./build.sh --arch x64 --release-type WIF --magisk-ver stable --gapps-brand MindTheGapps --root-sol magisk --compress-format 7z 
 
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v3
       with:
         path: output/*.7z
