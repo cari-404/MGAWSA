@@ -31,3 +31,26 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         path: output/*.7z
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
+
+      with:
+        tag_name: v2206  # Ganti dengan tag yang sesuai dengan versi yang diunggah
+        release_name: Release version 2206  # Nama rilis yang ingin ditampilkan
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Artifact
+      uses: actions/upload-release-asset@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
+
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: output/*.7z
+        asset_name: wsa-artifact.7z
+        asset_content_type: application/x-7z-compressed
