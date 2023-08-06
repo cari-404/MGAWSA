@@ -45,7 +45,7 @@ jobs:
         prerelease: false
 
     - name: Upload Release Artifact
-      uses: actions/upload-release-asset@v2
+      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
 
