@@ -9,6 +9,8 @@ jobs:
   build_WSA:
     name: Create packages WSA with Magisk and GAPPS
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout code
@@ -25,7 +27,7 @@ jobs:
     - name: Run.sh 
       run: |
         cd scripts
-        ./build.sh --arch x64 --release-type WIF --magisk-ver stable --gapps-brand MindTheGapps --root-sol magisk --compress-format 7z 
+        ./build.sh --arch x64 --release-type WIF --magisk-ver stable --gapps-brand MindTheGapps --root-sol magisk --custom-model redfin --compress-format 7z
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
@@ -37,18 +39,14 @@ jobs:
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
-
       with:
         tag_name: v2206  # Ganti dengan tag yang sesuai dengan versi yang diunggah
         release_name: Release version 2206  # Nama rilis yang ingin ditampilkan
-        draft: false
-        prerelease: false
 
     - name: Upload Release Artifact
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
-
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: output/*.7z
