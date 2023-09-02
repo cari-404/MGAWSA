@@ -40,8 +40,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
       with:
-        tag_name: v2206  # Ganti dengan tag yang sesuai dengan versi yang diunggah
-        release_name: Release version 2206  # Nama rilis yang ingin ditampilkan
+        tag_name: v2307.40000.6.0 # Ganti dengan tag yang sesuai dengan versi yang diunggah
+        release_name: Release version 2307.40000.6.0  # Nama rilis yang ingin ditampilkan
 
     - name: Upload Release Artifact
       uses: actions/upload-release-asset@v1
@@ -49,6 +49,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: output/*.7z
-        asset_name: wsa-artifact.7z
+        asset_path: ./output/*.7z
+        asset_name: WSA_2307.40000.6.0_x64.7z
         asset_content_type: application/x-7z-compressed
