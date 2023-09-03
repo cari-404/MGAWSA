@@ -11,7 +11,10 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       contents: write
-
+      
+    env:
+      RELEASE_VERSION: '2307.40000.6.0'  # Definisikan variabel RELEASE_VERSION di sini
+      
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -40,8 +43,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
       with:
-        tag_name: v2307.40000.6.0 # Ganti dengan tag yang sesuai dengan versi yang diunggah
-        release_name: Release version 2307.40000.6.0  # Nama rilis yang ingin ditampilkan
+        tag_name: v${{ env.RELEASE_VERSION }}  # Menggunakan variabel RELEASE_VERSION
+        release_name: Release version ${{ env.RELEASE_VERSION }}  # Menggunakan variabel RELEASE_VERSION
 
     - name: Upload Release Artifact
       uses: actions/upload-release-asset@v1
@@ -49,6 +52,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./output/*.7z
-        asset_name: WSA_2307.40000.6.0_x64.7z
+        asset_path: ./output/WSA_${{ env.RELEASE_VERSION }}_x64_Release-Nightly-with-Magisk-26.1-stable-MindTheGapps-13.0-as-Pixel-5.7z
+        asset_name: WSA_${{ env.RELEASE_VERSION }}_x64_Release-Nightly-with-Magisk-26.1-stable-MindTheGapps-13.0-as-Pixel-5.7z  # Menggunakan variabel RELEASE_VERSION
         asset_content_type: application/x-7z-compressed
