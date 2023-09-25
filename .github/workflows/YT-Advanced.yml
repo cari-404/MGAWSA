@@ -52,6 +52,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Pastikan Anda sudah menyediakan GitHub token
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./output/WSA_${{ env.RELEASE_VERSION }}_x64_Release-Nightly-with-Magisk-26.1-stable-MindTheGapps-13.0-as-Pixel-5.7z
-        asset_name: WSA_${{ env.RELEASE_VERSION }}_x64_Release-Nightly-with-Magisk-26.1-stable-MindTheGapps-13.0-as-Pixel-5.7z  # Menggunakan variabel RELEASE_VERSION
+        asset_path: ./output/WSA_${{ env.RELEASE_VERSION }}_x64_Release-Nightly-with-Magisk-26.3-stable-MindTheGapps-13.0-as-Pixel-5.7z
+        asset_name: WSA_${{ env.RELEASE_VERSION }}_x64_Release-Nightly-with-Magisk-26.3-stable-MindTheGapps-13.0-as-Pixel-5.7z  # Menggunakan variabel RELEASE_VERSION
         asset_content_type: application/x-7z-compressed
+        
