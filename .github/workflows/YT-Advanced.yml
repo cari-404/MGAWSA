@@ -13,7 +13,7 @@ jobs:
       contents: write
       
     env:
-      RELEASE_VERSION: '2307.40000.6.0'  # Definisikan variabel RELEASE_VERSION di sini
+      RELEASE_VERSION: '2308.40000.3.0'  # Definisikan variabel RELEASE_VERSION di sini
       
     steps:
     - name: Checkout code
